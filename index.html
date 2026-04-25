@@ -4,604 +4,237 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Online Database & Infographic</title>
+  <title>Tetris Game</title>
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      background: #ffffff;
-      color: #2f123f;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    header {
-      width: 100%;
-      background: #fff;
-      padding: 25px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.05);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo-icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #df5b47 40%, #3c174d 40%);
+      min-height: 100vh;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 20px;
-      font-family: Arial, sans-serif;
+      padding: 20px;
+      overflow-x: hidden;
     }
 
-    .logo-text small {
-      display: block;
-      font-size: 12px;
-      letter-spacing: 1px;
-      color: #333;
-      font-family: Arial, sans-serif;
-    }
-
-    .logo-text strong {
-      font-size: 22px;
-      color: #333;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 35px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #351243;
-      font-size: 17px;
-      font-family: Arial, sans-serif;
-    }
-
-    nav a:hover {
-      color: #df5b47;
-    }
-
-    .phone {
-      color: #351243;
-      font-weight: bold;
-      font-family: Arial, sans-serif;
-    }
-
-    .menu-btn {
-      display: none;
-      font-size: 28px;
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-    }
-
-    .hero {
-      min-height: 720px;
-      padding: 70px 7%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 120%;
-      height: 300px;
-      left: -10%;
-      bottom: 90px;
-      background: #f0eef8;
-      transform: rotate(-3deg);
-      z-index: 0;
-      border-radius: 50%;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 750px;
-      height: 280px;
-      right: -120px;
-      top: 250px;
-      background: transparent;
-      border-top: 3px solid rgba(60, 23, 77, 0.10);
-      border-bottom: 3px solid rgba(60, 23, 77, 0.10);
-      border-radius: 50%;
-      transform: rotate(12deg);
-      z-index: 0;
-    }
-
-    .hero-images {
-      position: relative;
-      height: 520px;
-      z-index: 2;
-    }
-
-    .circle-img {
-      position: absolute;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-      border: 8px solid #fff;
-    }
-
-    .img-large {
-      width: 330px;
-      height: 330px;
-      left: 10px;
-      top: 60px;
-    }
-
-    .img-medium {
-      width: 230px;
-      height: 230px;
-      right: 40px;
-      top: 120px;
-    }
-
-    .img-small {
-      width: 260px;
-      height: 260px;
-      left: 230px;
-      bottom: 0;
-    }
-
-    .hero-text {
-      position: relative;
-      z-index: 2;
-      text-align: right;
-    }
-
-    .hero-text h1 {
-      font-size: 78px;
-      line-height: 0.95;
-      color: #3c174d;
-      margin-bottom: 25px;
-    }
-
-    .hero-text h1 span {
-      color: #df5b47;
-    }
-
-    .hero-text p {
-      font-family: Arial, sans-serif;
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 520px;
-      margin-left: auto;
-      color: #555;
-    }
-
-    .hero-buttons {
-      margin-top: 30px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 24px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn-primary {
-      background: #df5b47;
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #3c174d;
-      color: white;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
-
-    section {
-      padding: 70px 7%;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-header small {
-      color: #df5b47;
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .section-header h2 {
-      font-size: 42px;
-      color: #3c174d;
-      margin-top: 8px;
-    }
-
-    .section-header p {
-      font-family: Arial, sans-serif;
-      color: #666;
-      max-width: 650px;
-      margin: 12px auto 0;
-      line-height: 1.6;
-    }
-
-    .dashboard {
-      background: #f7f4fb;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 22px;
-    }
-
-    .stat-card {
-      background: white;
-      padding: 30px;
-      border-radius: 25px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-      text-align: center;
-      border-top: 6px solid #df5b47;
-    }
-
-    .stat-card h3 {
-      font-size: 48px;
-      color: #3c174d;
-    }
-
-    .stat-card p {
-      font-family: Arial, sans-serif;
-      color: #666;
-      margin-top: 8px;
-    }
-
-    .bars {
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 24px;
-    }
-
-    .bar-card {
-      background: white;
-      border-radius: 22px;
-      padding: 25px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-    }
-
-    .bar-card h4 {
-      font-size: 20px;
-      margin-bottom: 12px;
-      color: #3c174d;
-    }
-
-    .bar-card p {
-      font-family: Arial, sans-serif;
-      color: #666;
-      margin-top: 10px;
-    }
-
-    .bar-bg {
+    .game-wrapper {
       width: 100%;
-      height: 15px;
-      background: #e4deea;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #df5b47, #3c174d);
-      border-radius: 20px;
-      width: 0%;
-      transition: 0.6s ease;
-    }
-
-    .database {
-      background: white;
-    }
-
-    .search-box {
-      max-width: 700px;
-      margin: 0 auto 30px;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 16px 20px;
-      border-radius: 35px;
-      border: 2px solid #e4deea;
-      font-size: 16px;
-      outline: none;
-      font-family: Arial, sans-serif;
-    }
-
-    .search-box input:focus {
-      border-color: #df5b47;
-    }
-
-    .table-wrapper {
-      overflow-x: auto;
-      background: white;
-      border-radius: 25px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 750px;
-    }
-
-    th {
-      background: #3c174d;
-      color: white;
-      padding: 18px;
-      text-align: left;
-      font-family: Arial, sans-serif;
-    }
-
-    td {
-      padding: 17px 18px;
-      border-bottom: 1px solid #eee;
-      font-family: Arial, sans-serif;
-      color: #444;
-    }
-
-    tr:hover {
-      background: #f7f4fb;
-    }
-
-    .status {
-      padding: 7px 13px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 13px;
-      display: inline-block;
-      font-family: Arial, sans-serif;
-    }
-
-    .approved {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .pending {
-      background: #fef9c3;
-      color: #854d0e;
-    }
-
-    .review {
-      background: #dbeafe;
-      color: #1e40af;
-    }
-
-    .rejected {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    .services {
-      background: #f7f4fb;
-    }
-
-    .service-grid {
+      max-width: 1100px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: 1fr 320px;
       gap: 25px;
+      align-items: center;
     }
 
-    .service-card {
-      background: white;
-      padding: 30px;
-      border-radius: 25px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.07);
-      min-height: 180px;
+    .game-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .service-card .icon {
-      font-size: 34px;
-      margin-bottom: 15px;
+    canvas {
+      background: #0b1020;
+      border-radius: 14px;
+      border: 4px solid rgba(255, 255, 255, 0.15);
+      box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.65);
+      max-width: 100%;
+      height: auto;
     }
 
-    .service-card h3 {
-      color: #3c174d;
-      font-size: 22px;
-      margin-bottom: 10px;
+    .side-panel {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
     }
 
-    .service-card p {
-      font-family: Arial, sans-serif;
-      color: #666;
-      line-height: 1.6;
-    }
-
-    .contact {
-      background: #3c174d;
-      color: white;
+    .title {
       text-align: center;
+      margin-bottom: 22px;
     }
 
-    .contact h2 {
-      font-size: 42px;
-      margin-bottom: 15px;
+    .title h1 {
+      font-size: 46px;
+      letter-spacing: 4px;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.35);
     }
 
-    .contact p {
-      font-family: Arial, sans-serif;
-      color: #eee;
-      max-width: 650px;
-      margin: auto;
-      line-height: 1.7;
-    }
-
-    footer {
-      background: #2b1038;
-      color: white;
-      text-align: center;
-      padding: 25px;
-    }
-
-    footer p {
-      font-family: Arial, sans-serif;
+    .title p {
+      color: #cbd5e1;
+      margin-top: 8px;
       font-size: 14px;
-      color: #ddd;
     }
 
-    @media (max-width: 900px) {
-      header {
-        flex-wrap: wrap;
-      }
+    .info-box {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-      .menu-btn {
-        display: block;
-      }
+    .info-box small {
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+    }
 
-      nav {
-        display: none;
-        width: 100%;
-        flex-direction: column;
+    .info-box h2 {
+      font-size: 34px;
+      margin-top: 5px;
+      color: #38bdf8;
+    }
+
+    .next-box {
+      text-align: center;
+    }
+
+    #nextCanvas {
+      margin-top: 12px;
+      background: #0b1020;
+      border-radius: 12px;
+      border: 3px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .buttons {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: none;
+      padding: 15px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.2s ease;
+      color: white;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .start-btn {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+
+    .pause-btn {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .reset-btn {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .controls {
+      margin-top: 18px;
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .controls strong {
+      color: white;
+    }
+
+    .mobile-controls {
+      display: none;
+      margin-top: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mobile-controls button {
+      border-radius: 16px;
+      padding: 16px 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 20px;
+    }
+
+    .wide {
+      grid-column: span 3;
+      background: rgba(56, 189, 248, 0.25) !important;
+    }
+
+    .message {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #e0f2fe;
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 850px) {
+      body {
         align-items: flex-start;
-        margin-top: 20px;
-        gap: 18px;
       }
 
-      nav.active {
-        display: flex;
-      }
-
-      .hero {
+      .game-wrapper {
         grid-template-columns: 1fr;
-        padding-top: 40px;
       }
 
-      .hero-images {
-        height: 420px;
+      .side-panel {
+        order: -1;
       }
 
-      .img-large {
-        width: 250px;
-        height: 250px;
+      .title h1 {
+        font-size: 36px;
       }
 
-      .img-medium {
-        width: 180px;
-        height: 180px;
-        right: 10px;
+      .mobile-controls {
+        display: grid;
       }
 
-      .img-small {
-        width: 200px;
-        height: 200px;
-        left: 140px;
+      .controls {
+        display: none;
       }
 
-      .hero-text {
-        text-align: center;
+      .game-card {
+        padding: 14px;
       }
 
-      .hero-text h1 {
-        font-size: 52px;
-      }
-
-      .hero-text p {
-        margin: auto;
-      }
-
-      .hero-buttons {
-        justify-content: center;
+      canvas {
+        width: 300px;
       }
     }
 
-    @media (max-width: 500px) {
-      .logo-text strong {
-        font-size: 16px;
+    @media (max-width: 420px) {
+      .side-panel {
+        padding: 18px;
       }
 
-      .logo-text small {
-        font-size: 10px;
+      .title h1 {
+        font-size: 30px;
       }
 
-      .logo-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 16px;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-images {
-        height: 360px;
-      }
-
-      .img-large {
-        width: 210px;
-        height: 210px;
-        left: 0;
-      }
-
-      .img-medium {
-        width: 145px;
-        height: 145px;
-        right: 0;
-      }
-
-      .img-small {
-        width: 170px;
-        height: 170px;
-        left: 110px;
-        bottom: 20px;
-      }
-
-      .hero-text h1 {
-        font-size: 42px;
-      }
-
-      .section-header h2 {
-        font-size: 32px;
-      }
-
-      section {
-        padding: 55px 5%;
+      canvas {
+        width: 280px;
       }
     }
   </style>
@@ -609,348 +242,586 @@
 
 <body>
 
-  <header>
-    <div class="logo">
-      <div class="logo-icon">DB</div>
-      <div class="logo-text">
-        <small>ONLINE PUBLIC</small>
-        <strong>DATABASE INFOGRAPHIC</strong>
+  <div class="game-wrapper">
+
+    <div class="game-card">
+      <canvas id="gameCanvas" width="300" height="600"></canvas>
+    </div>
+
+    <div class="side-panel">
+      <div class="title">
+        <h1>TETRIS</h1>
+        <p>Play directly from your GitHub Pages link</p>
+      </div>
+
+      <div class="info-box">
+        <small>Score</small>
+        <h2 id="score">0</h2>
+      </div>
+
+      <div class="info-box">
+        <small>Lines</small>
+        <h2 id="lines">0</h2>
+      </div>
+
+      <div class="info-box">
+        <small>Level</small>
+        <h2 id="level">1</h2>
+      </div>
+
+      <div class="info-box next-box">
+        <small>Next Block</small>
+        <br />
+        <canvas id="nextCanvas" width="120" height="120"></canvas>
+      </div>
+
+      <div class="buttons">
+        <button class="start-btn" onclick="startGame()">Start Game</button>
+        <button class="pause-btn" onclick="pauseGame()">Pause / Resume</button>
+        <button class="reset-btn" onclick="resetGame()">Reset Game</button>
+      </div>
+
+      <div class="controls">
+        <p><strong>Keyboard Controls:</strong></p>
+        <p>← Move Left</p>
+        <p>→ Move Right</p>
+        <p>↓ Move Down</p>
+        <p>↑ Rotate</p>
+        <p>Space = Drop Fast</p>
+        <p>P = Pause / Resume</p>
+      </div>
+
+      <div class="mobile-controls">
+        <button onclick="moveLeft()">⬅️</button>
+        <button onclick="rotatePiece()">🔄</button>
+        <button onclick="moveRight()">➡️</button>
+        <button class="wide" onclick="hardDrop()">⬇️ Drop</button>
+      </div>
+
+      <div class="message" id="gameMessage">
+        Click <strong>Start Game</strong> to play.
       </div>
     </div>
 
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-
-    <nav id="navMenu">
-      <a href="#home">Home</a>
-      <a href="#dashboard">Infographic</a>
-      <a href="#database">Database</a>
-      <a href="#services">Features</a>
-      <a href="#contact">Contact</a>
-      <span class="phone">📞 (000) 000-0000</span>
-    </nav>
-  </header>
-
-  <section class="hero" id="home">
-    <div class="hero-images">
-      <img
-        class="circle-img img-large"
-        src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80"
-        alt="Team photo"
-      />
-
-      <img
-        class="circle-img img-medium"
-        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80"
-        alt="Dashboard photo"
-      />
-
-      <img
-        class="circle-img img-small"
-        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80"
-        alt="Data photo"
-      />
-    </div>
-
-    <div class="hero-text">
-      <h1><span>Your</span><br />Public<br />Database</h1>
-
-      <p>
-        A simple online database and infographic dashboard that you can share
-        with others. View records, search data, and show beautiful summaries in
-        one public website.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#dashboard" class="btn btn-primary">View Infographic</a>
-        <a href="#database" class="btn btn-secondary">Open Database</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="dashboard" id="dashboard">
-    <div class="section-header">
-      <small>Infographic Summary</small>
-      <h2>Database Overview</h2>
-      <p>
-        This section automatically counts your records and shows the result as a
-        simple infographic.
-      </p>
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h3 id="totalRecords">0</h3>
-        <p>Total Records</p>
-      </div>
-
-      <div class="stat-card">
-        <h3 id="approvedRecords">0</h3>
-        <p>Approved</p>
-      </div>
-
-      <div class="stat-card">
-        <h3 id="pendingRecords">0</h3>
-        <p>Pending</p>
-      </div>
-
-      <div class="stat-card">
-        <h3 id="reviewRecords">0</h3>
-        <p>For Review</p>
-      </div>
-    </div>
-
-    <div class="bars">
-      <div class="bar-card">
-        <h4>Approved Records</h4>
-        <div class="bar-bg">
-          <div class="bar-fill" id="approvedBar"></div>
-        </div>
-        <p id="approvedPercent">0%</p>
-      </div>
-
-      <div class="bar-card">
-        <h4>Pending Records</h4>
-        <div class="bar-bg">
-          <div class="bar-fill" id="pendingBar"></div>
-        </div>
-        <p id="pendingPercent">0%</p>
-      </div>
-
-      <div class="bar-card">
-        <h4>For Review Records</h4>
-        <div class="bar-bg">
-          <div class="bar-fill" id="reviewBar"></div>
-        </div>
-        <p id="reviewPercent">0%</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="database" id="database">
-    <div class="section-header">
-      <small>Searchable Records</small>
-      <h2>Public Database Table</h2>
-      <p>
-        Use the search box to find records by name, office, category, or status.
-      </p>
-    </div>
-
-    <div class="search-box">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search records..."
-        onkeyup="searchRecords()"
-      />
-    </div>
-
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Office / School</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-
-        <tbody id="recordTable"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="services" id="services">
-    <div class="section-header">
-      <small>Website Features</small>
-      <h2>What This Website Can Show</h2>
-      <p>
-        You can customize this website for public data, school records, office
-        tracking, project lists, or reports.
-      </p>
-    </div>
-
-    <div class="service-grid">
-      <div class="service-card">
-        <div class="icon">📊</div>
-        <h3>Infographic Cards</h3>
-        <p>Automatically shows total records and status count.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="icon">🔍</div>
-        <h3>Search Function</h3>
-        <p>Visitors can search the database instantly.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="icon">📁</div>
-        <h3>Public Records</h3>
-        <p>Good for public and non-confidential information.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="icon">🌐</div>
-        <h3>Online Link</h3>
-        <p>Upload to GitHub Pages and share the website link.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <h2>Ready to Share Your Database?</h2>
-    <p>
-      Edit the records inside the code, upload it to GitHub Pages, and share
-      your public database link with others.
-    </p>
-  </section>
-
-  <footer>
-    <p>
-      © 2026 Online Database Infographic. Created with HTML, CSS, JavaScript,
-      and GitHub Pages.
-    </p>
-  </footer>
+  </div>
 
   <script>
-    const records = [
-      {
-        name: "Juan Dela Cruz",
-        office: "ABC College",
-        category: "Application",
-        status: "Approved",
-        remarks: "Completed requirements"
-      },
-      {
-        name: "Maria Santos",
-        office: "XYZ University",
-        category: "Evaluation",
-        status: "Pending",
-        remarks: "Waiting for review"
-      },
-      {
-        name: "Carlo Reyes",
-        office: "Metro Institute",
-        category: "Report",
-        status: "For Review",
-        remarks: "Submitted for checking"
-      },
-      {
-        name: "Ana Lopez",
-        office: "North State College",
-        category: "Application",
-        status: "Approved",
-        remarks: "Verified and approved"
-      },
-      {
-        name: "Mark Garcia",
-        office: "South University",
-        category: "Request",
-        status: "Pending",
-        remarks: "Needs additional document"
-      },
-      {
-        name: "Grace Villanueva",
-        office: "City Technical College",
-        category: "Monitoring",
-        status: "For Review",
-        remarks: "Under validation"
-      },
-      {
-        name: "Paolo Mendoza",
-        office: "Eastern College",
-        category: "Application",
-        status: "Rejected",
-        remarks: "Incomplete details"
-      },
-      {
-        name: "Liza Fernandez",
-        office: "Western University",
-        category: "Evaluation",
-        status: "Approved",
-        remarks: "Finalized"
+    const canvas = document.getElementById("gameCanvas");
+    const context = canvas.getContext("2d");
+
+    const nextCanvas = document.getElementById("nextCanvas");
+    const nextContext = nextCanvas.getContext("2d");
+
+    const scoreElement = document.getElementById("score");
+    const linesElement = document.getElementById("lines");
+    const levelElement = document.getElementById("level");
+    const messageElement = document.getElementById("gameMessage");
+
+    const ROWS = 20;
+    const COLS = 10;
+    const BLOCK_SIZE = 30;
+
+    let board = [];
+    let currentPiece;
+    let nextPiece;
+    let score = 0;
+    let lines = 0;
+    let level = 1;
+    let dropCounter = 0;
+    let dropInterval = 800;
+    let lastTime = 0;
+    let gameRunning = false;
+    let gamePaused = false;
+    let gameOver = false;
+
+    const colors = {
+      I: "#22d3ee",
+      J: "#3b82f6",
+      L: "#f97316",
+      O: "#eab308",
+      S: "#22c55e",
+      T: "#a855f7",
+      Z: "#ef4444"
+    };
+
+    const pieces = {
+      I: [
+        [0, 0, 0, 0],
+        [1, 1, 1, 1],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+      ],
+      J: [
+        [1, 0, 0],
+        [1, 1, 1],
+        [0, 0, 0]
+      ],
+      L: [
+        [0, 0, 1],
+        [1, 1, 1],
+        [0, 0, 0]
+      ],
+      O: [
+        [1, 1],
+        [1, 1]
+      ],
+      S: [
+        [0, 1, 1],
+        [1, 1, 0],
+        [0, 0, 0]
+      ],
+      T: [
+        [0, 1, 0],
+        [1, 1, 1],
+        [0, 0, 0]
+      ],
+      Z: [
+        [1, 1, 0],
+        [0, 1, 1],
+        [0, 0, 0]
+      ]
+    };
+
+    function createBoard() {
+      board = [];
+
+      for (let row = 0; row < ROWS; row++) {
+        board[row] = [];
+
+        for (let col = 0; col < COLS; col++) {
+          board[row][col] = null;
+        }
       }
-    ];
-
-    function toggleMenu() {
-      document.getElementById("navMenu").classList.toggle("active");
     }
 
-    function statusClass(status) {
-      if (status === "Approved") return "approved";
-      if (status === "Pending") return "pending";
-      if (status === "For Review") return "review";
-      if (status === "Rejected") return "rejected";
-      return "";
+    function createPiece() {
+      const names = Object.keys(pieces);
+      const name = names[Math.floor(Math.random() * names.length)];
+
+      return {
+        name: name,
+        matrix: pieces[name].map(row => row.slice()),
+        x: Math.floor(COLS / 2) - 2,
+        y: 0,
+        color: colors[name]
+      };
     }
 
-    function displayRecords(data) {
-      const table = document.getElementById("recordTable");
-      table.innerHTML = "";
+    function drawBlock(x, y, color, ctx = context, size = BLOCK_SIZE) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x * size, y * size, size, size);
 
-      data.forEach(record => {
-        table.innerHTML += `
-          <tr>
-            <td>${record.name}</td>
-            <td>${record.office}</td>
-            <td>${record.category}</td>
-            <td>
-              <span class="status ${statusClass(record.status)}">
-                ${record.status}
-              </span>
-            </td>
-            <td>${record.remarks}</td>
-          </tr>
-        `;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x * size + 1, y * size + 1, size - 2, size - 2);
+
+      ctx.fillStyle = "rgba(255, 255, 255, 0.18)";
+      ctx.fillRect(x * size + 4, y * size + 4, size - 8, 5);
+    }
+
+    function drawBoard() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      context.fillStyle = "#0b1020";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+
+      drawGrid();
+
+      for (let row = 0; row < ROWS; row++) {
+        for (let col = 0; col < COLS; col++) {
+          if (board[row][col]) {
+            drawBlock(col, row, board[row][col]);
+          }
+        }
+      }
+    }
+
+    function drawGrid() {
+      context.strokeStyle = "rgba(255, 255, 255, 0.04)";
+      context.lineWidth = 1;
+
+      for (let x = 0; x <= COLS; x++) {
+        context.beginPath();
+        context.moveTo(x * BLOCK_SIZE, 0);
+        context.lineTo(x * BLOCK_SIZE, canvas.height);
+        context.stroke();
+      }
+
+      for (let y = 0; y <= ROWS; y++) {
+        context.beginPath();
+        context.moveTo(0, y * BLOCK_SIZE);
+        context.lineTo(canvas.width, y * BLOCK_SIZE);
+        context.stroke();
+      }
+    }
+
+    function drawPiece(piece) {
+      piece.matrix.forEach((row, y) => {
+        row.forEach((value, x) => {
+          if (value) {
+            drawBlock(piece.x + x, piece.y + y, piece.color);
+          }
+        });
       });
     }
 
-    function updateDashboard() {
-      const total = records.length;
-      const approved = records.filter(record => record.status === "Approved").length;
-      const pending = records.filter(record => record.status === "Pending").length;
-      const review = records.filter(record => record.status === "For Review").length;
+    function drawNextPiece() {
+      nextContext.clearRect(0, 0, nextCanvas.width, nextCanvas.height);
 
-      document.getElementById("totalRecords").innerText = total;
-      document.getElementById("approvedRecords").innerText = approved;
-      document.getElementById("pendingRecords").innerText = pending;
-      document.getElementById("reviewRecords").innerText = review;
+      nextContext.fillStyle = "#0b1020";
+      nextContext.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
 
-      const approvedPercent = Math.round((approved / total) * 100);
-      const pendingPercent = Math.round((pending / total) * 100);
-      const reviewPercent = Math.round((review / total) * 100);
+      if (!nextPiece) {
+        return;
+      }
 
-      document.getElementById("approvedBar").style.width = approvedPercent + "%";
-      document.getElementById("pendingBar").style.width = pendingPercent + "%";
-      document.getElementById("reviewBar").style.width = reviewPercent + "%";
+      const size = 24;
+      const matrix = nextPiece.matrix;
+      const offsetX = Math.floor((5 - matrix[0].length) / 2);
+      const offsetY = Math.floor((5 - matrix.length) / 2);
 
-      document.getElementById("approvedPercent").innerText =
-        approvedPercent + "% of total records";
-
-      document.getElementById("pendingPercent").innerText =
-        pendingPercent + "% of total records";
-
-      document.getElementById("reviewPercent").innerText =
-        reviewPercent + "% of total records";
+      matrix.forEach((row, y) => {
+        row.forEach((value, x) => {
+          if (value) {
+            drawBlock(offsetX + x, offsetY + y, nextPiece.color, nextContext, size);
+          }
+        });
+      });
     }
 
-    function searchRecords() {
-      const searchText = document.getElementById("searchInput").value.toLowerCase();
+    function collision(piece) {
+      for (let y = 0; y < piece.matrix.length; y++) {
+        for (let x = 0; x < piece.matrix[y].length; x++) {
+          if (piece.matrix[y][x]) {
+            const newX = piece.x + x;
+            const newY = piece.y + y;
 
-      const filtered = records.filter(record =>
-        record.name.toLowerCase().includes(searchText) ||
-        record.office.toLowerCase().includes(searchText) ||
-        record.category.toLowerCase().includes(searchText) ||
-        record.status.toLowerCase().includes(searchText) ||
-        record.remarks.toLowerCase().includes(searchText)
+            if (
+              newX < 0 ||
+              newX >= COLS ||
+              newY >= ROWS ||
+              (newY >= 0 && board[newY][newX])
+            ) {
+              return true;
+            }
+          }
+        }
+      }
+
+      return false;
+    }
+
+    function mergePiece() {
+      currentPiece.matrix.forEach((row, y) => {
+        row.forEach((value, x) => {
+          if (value) {
+            const boardY = currentPiece.y + y;
+            const boardX = currentPiece.x + x;
+
+            if (boardY >= 0) {
+              board[boardY][boardX] = currentPiece.color;
+            }
+          }
+        });
+      });
+    }
+
+    function rotate(matrix) {
+      const result = matrix[0].map((_, index) =>
+        matrix.map(row => row[index]).reverse()
       );
 
-      displayRecords(filtered);
+      return result;
     }
 
-    displayRecords(records);
-    updateDashboard();
+    function rotatePiece() {
+      if (!gameRunning || gamePaused || gameOver) {
+        return;
+      }
+
+      const originalMatrix = currentPiece.matrix;
+      const originalX = currentPiece.x;
+
+      currentPiece.matrix = rotate(currentPiece.matrix);
+
+      let offset = 1;
+
+      while (collision(currentPiece)) {
+        currentPiece.x += offset;
+        offset = -(offset + (offset > 0 ? 1 : -1));
+
+        if (Math.abs(offset) > currentPiece.matrix[0].length) {
+          currentPiece.matrix = originalMatrix;
+          currentPiece.x = originalX;
+          return;
+        }
+      }
+
+      draw();
+    }
+
+    function moveLeft() {
+      if (!gameRunning || gamePaused || gameOver) {
+        return;
+      }
+
+      currentPiece.x--;
+
+      if (collision(currentPiece)) {
+        currentPiece.x++;
+      }
+
+      draw();
+    }
+
+    function moveRight() {
+      if (!gameRunning || gamePaused || gameOver) {
+        return;
+      }
+
+      currentPiece.x++;
+
+      if (collision(currentPiece)) {
+        currentPiece.x--;
+      }
+
+      draw();
+    }
+
+    function moveDown() {
+      if (!gameRunning || gamePaused || gameOver) {
+        return;
+      }
+
+      currentPiece.y++;
+
+      if (collision(currentPiece)) {
+        currentPiece.y--;
+        lockPiece();
+      }
+
+      dropCounter = 0;
+      draw();
+    }
+
+    function hardDrop() {
+      if (!gameRunning || gamePaused || gameOver) {
+        return;
+      }
+
+      while (!collision(currentPiece)) {
+        currentPiece.y++;
+      }
+
+      currentPiece.y--;
+      lockPiece();
+      draw();
+    }
+
+    function lockPiece() {
+      mergePiece();
+      clearLines();
+
+      currentPiece = nextPiece;
+      nextPiece = createPiece();
+
+      if (collision(currentPiece)) {
+        endGame();
+      }
+
+      drawNextPiece();
+    }
+
+    function clearLines() {
+      let cleared = 0;
+
+      outer: for (let row = ROWS - 1; row >= 0; row--) {
+        for (let col = 0; col < COLS; col++) {
+          if (!board[row][col]) {
+            continue outer;
+          }
+        }
+
+        const removedRow = board.splice(row, 1)[0].fill(null);
+        board.unshift(removedRow);
+        cleared++;
+        row++;
+      }
+
+      if (cleared > 0) {
+        lines += cleared;
+
+        if (cleared === 1) {
+          score += 100 * level;
+        } else if (cleared === 2) {
+          score += 300 * level;
+        } else if (cleared === 3) {
+          score += 500 * level;
+        } else if (cleared === 4) {
+          score += 800 * level;
+        }
+
+        level = Math.floor(lines / 10) + 1;
+        dropInterval = Math.max(120, 800 - (level - 1) * 70);
+
+        updateScore();
+      }
+    }
+
+    function updateScore() {
+      scoreElement.innerText = score;
+      linesElement.innerText = lines;
+      levelElement.innerText = level;
+    }
+
+    function draw() {
+      drawBoard();
+
+      if (currentPiece) {
+        drawPiece(currentPiece);
+      }
+    }
+
+    function update(time = 0) {
+      if (!gameRunning || gamePaused || gameOver) {
+        return;
+      }
+
+      const deltaTime = time - lastTime;
+      lastTime = time;
+      dropCounter += deltaTime;
+
+      if (dropCounter > dropInterval) {
+        moveDown();
+      }
+
+      draw();
+      requestAnimationFrame(update);
+    }
+
+    function startGame() {
+      if (gameRunning && !gameOver) {
+        gamePaused = false;
+        messageElement.innerHTML = "Game running. Good luck!";
+        lastTime = 0;
+        requestAnimationFrame(update);
+        return;
+      }
+
+      createBoard();
+
+      score = 0;
+      lines = 0;
+      level = 1;
+      dropInterval = 800;
+      dropCounter = 0;
+      lastTime = 0;
+      gameRunning = true;
+      gamePaused = false;
+      gameOver = false;
+
+      currentPiece = createPiece();
+      nextPiece = createPiece();
+
+      updateScore();
+      drawNextPiece();
+      draw();
+
+      messageElement.innerHTML = "Game running. Use keyboard or mobile buttons.";
+      requestAnimationFrame(update);
+    }
+
+    function pauseGame() {
+      if (!gameRunning || gameOver) {
+        return;
+      }
+
+      gamePaused = !gamePaused;
+
+      if (gamePaused) {
+        messageElement.innerHTML = "Game paused.";
+      } else {
+        messageElement.innerHTML = "Game resumed.";
+        lastTime = 0;
+        requestAnimationFrame(update);
+      }
+    }
+
+    function resetGame() {
+      gameRunning = false;
+      gamePaused = false;
+      gameOver = false;
+
+      createBoard();
+
+      score = 0;
+      lines = 0;
+      level = 1;
+      dropInterval = 800;
+      dropCounter = 0;
+
+      currentPiece = createPiece();
+      nextPiece = createPiece();
+
+      updateScore();
+      drawNextPiece();
+      draw();
+
+      messageElement.innerHTML = "Game reset. Click <strong>Start Game</strong> to play.";
+    }
+
+    function endGame() {
+      gameOver = true;
+      gameRunning = false;
+
+      messageElement.innerHTML = "Game Over! Your score is <strong>" + score + "</strong>.";
+
+      context.fillStyle = "rgba(0, 0, 0, 0.72)";
+      context.fillRect(0, canvas.height / 2 - 80, canvas.width, 160);
+
+      context.fillStyle = "#ffffff";
+      context.font = "bold 34px Arial";
+      context.textAlign = "center";
+      context.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 15);
+
+      context.font = "18px Arial";
+      context.fillText("Score: " + score, canvas.width / 2, canvas.height / 2 + 25);
+      context.fillText("Click Reset to play again", canvas.width / 2, canvas.height / 2 + 55);
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "ArrowLeft") {
+        moveLeft();
+      }
+
+      if (event.key === "ArrowRight") {
+        moveRight();
+      }
+
+      if (event.key === "ArrowDown") {
+        moveDown();
+      }
+
+      if (event.key === "ArrowUp") {
+        rotatePiece();
+      }
+
+      if (event.code === "Space") {
+        event.preventDefault();
+        hardDrop();
+      }
+
+      if (event.key === "p" || event.key === "P") {
+        pauseGame();
+      }
+    });
+
+    createBoard();
+    currentPiece = createPiece();
+    nextPiece = createPiece();
+    updateScore();
+    drawNextPiece();
+    draw();
   </script>
 
 </body>
