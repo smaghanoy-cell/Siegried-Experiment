@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Online Database & Infographic</title>
 
   <style>
@@ -22,7 +23,6 @@
       scroll-behavior: smooth;
     }
 
-    /* HEADER */
     header {
       width: 100%;
       background: #fff;
@@ -53,6 +53,7 @@
       color: white;
       font-weight: bold;
       font-size: 20px;
+      font-family: Arial, sans-serif;
     }
 
     .logo-text small {
@@ -60,6 +61,7 @@
       font-size: 12px;
       letter-spacing: 1px;
       color: #333;
+      font-family: Arial, sans-serif;
     }
 
     .logo-text strong {
@@ -94,9 +96,9 @@
       display: none;
       font-size: 28px;
       cursor: pointer;
+      font-family: Arial, sans-serif;
     }
 
-    /* HERO */
     .hero {
       min-height: 720px;
       padding: 70px 7%;
@@ -229,7 +231,6 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     }
 
-    /* GENERAL SECTIONS */
     section {
       padding: 70px 7%;
     }
@@ -261,7 +262,6 @@
       line-height: 1.6;
     }
 
-    /* INFOGRAPHIC CARDS */
     .dashboard {
       background: #f7f4fb;
     }
@@ -292,7 +292,6 @@
       margin-top: 8px;
     }
 
-    /* BAR INFOGRAPHIC */
     .bars {
       margin-top: 40px;
       display: grid;
@@ -335,7 +334,6 @@
       transition: 0.6s ease;
     }
 
-    /* DATABASE TABLE */
     .database {
       background: white;
     }
@@ -397,6 +395,7 @@
       font-weight: bold;
       font-size: 13px;
       display: inline-block;
+      font-family: Arial, sans-serif;
     }
 
     .approved {
@@ -419,7 +418,6 @@
       color: #991b1b;
     }
 
-    /* SERVICES */
     .services {
       background: #f7f4fb;
     }
@@ -455,7 +453,6 @@
       line-height: 1.6;
     }
 
-    /* CONTACT */
     .contact {
       background: #3c174d;
       color: white;
@@ -480,7 +477,6 @@
       color: white;
       text-align: center;
       padding: 25px;
-      font-family: Arial, sans-serif;
     }
 
     footer p {
@@ -489,7 +485,6 @@
       color: #ddd;
     }
 
-    /* MOBILE */
     @media (max-width: 900px) {
       header {
         flex-wrap: wrap;
@@ -560,6 +555,43 @@
         font-size: 16px;
       }
 
+      .logo-text small {
+        font-size: 10px;
+      }
+
+      .logo-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 16px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-images {
+        height: 360px;
+      }
+
+      .img-large {
+        width: 210px;
+        height: 210px;
+        left: 0;
+      }
+
+      .img-medium {
+        width: 145px;
+        height: 145px;
+        right: 0;
+      }
+
+      .img-small {
+        width: 170px;
+        height: 170px;
+        left: 110px;
+        bottom: 20px;
+      }
+
       .hero-text h1 {
         font-size: 42px;
       }
@@ -577,7 +609,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="logo">
       <div class="logo-icon">DB</div>
@@ -599,19 +630,34 @@
     </nav>
   </header>
 
-  <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-images">
-      <img class="circle-img img-large" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" alt="Team photo">
-      <img class="circle-img img-medium" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80" alt="Dashboard photo">
-      <img class="circle-img img-small" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80" alt="Data photo">
+      <img
+        class="circle-img img-large"
+        src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80"
+        alt="Team photo"
+      />
+
+      <img
+        class="circle-img img-medium"
+        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80"
+        alt="Dashboard photo"
+      />
+
+      <img
+        class="circle-img img-small"
+        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80"
+        alt="Data photo"
+      />
     </div>
 
     <div class="hero-text">
-      <h1><span>Your</span><br>Public<br>Database</h1>
+      <h1><span>Your</span><br />Public<br />Database</h1>
+
       <p>
-        A simple online database and infographic dashboard that you can share with others.
-        View records, search data, and show beautiful summaries in one public website.
+        A simple online database and infographic dashboard that you can share
+        with others. View records, search data, and show beautiful summaries in
+        one public website.
       </p>
 
       <div class="hero-buttons">
@@ -621,13 +667,13 @@
     </div>
   </section>
 
-  <!-- INFOGRAPHIC DASHBOARD -->
   <section class="dashboard" id="dashboard">
     <div class="section-header">
       <small>Infographic Summary</small>
       <h2>Database Overview</h2>
       <p>
-        This section automatically counts your records and shows the result as a simple infographic.
+        This section automatically counts your records and shows the result as a
+        simple infographic.
       </p>
     </div>
 
@@ -680,7 +726,6 @@
     </div>
   </section>
 
-  <!-- DATABASE TABLE -->
   <section class="database" id="database">
     <div class="section-header">
       <small>Searchable Records</small>
@@ -710,18 +755,19 @@
             <th>Remarks</th>
           </tr>
         </thead>
+
         <tbody id="recordTable"></tbody>
       </table>
     </div>
   </section>
 
-  <!-- FEATURES -->
   <section class="services" id="services">
     <div class="section-header">
       <small>Website Features</small>
       <h2>What This Website Can Show</h2>
       <p>
-        You can customize this website for public data, school records, office tracking, project lists, or reports.
+        You can customize this website for public data, school records, office
+        tracking, project lists, or reports.
       </p>
     </div>
 
@@ -752,16 +798,19 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="contact" id="contact">
     <h2>Ready to Share Your Database?</h2>
     <p>
-      Edit the records inside the code, upload it to GitHub Pages, and share your public database link with others.
+      Edit the records inside the code, upload it to GitHub Pages, and share
+      your public database link with others.
     </p>
   </section>
 
   <footer>
-    <p>© 2026 Online Database Infographic. Created with HTML, CSS, JavaScript, and GitHub Pages.</p>
+    <p>
+      © 2026 Online Database Infographic. Created with HTML, CSS, JavaScript,
+      and GitHub Pages.
+    </p>
   </footer>
 
   <script>
@@ -846,7 +895,11 @@
             <td>${record.name}</td>
             <td>${record.office}</td>
             <td>${record.category}</td>
-            <td><span class="status ${statusClass(record.status)}">${record.status}</span></td>
+            <td>
+              <span class="status ${statusClass(record.status)}">
+                ${record.status}
+              </span>
+            </td>
             <td>${record.remarks}</td>
           </tr>
         `;
@@ -872,9 +925,14 @@
       document.getElementById("pendingBar").style.width = pendingPercent + "%";
       document.getElementById("reviewBar").style.width = reviewPercent + "%";
 
-      document.getElementById("approvedPercent").innerText = approvedPercent + "% of total records";
-      document.getElementById("pendingPercent").innerText = pendingPercent + "% of total records";
-      document.getElementById("reviewPercent").innerText = reviewPercent + "% of total records";
+      document.getElementById("approvedPercent").innerText =
+        approvedPercent + "% of total records";
+
+      document.getElementById("pendingPercent").innerText =
+        pendingPercent + "% of total records";
+
+      document.getElementById("reviewPercent").innerText =
+        reviewPercent + "% of total records";
     }
 
     function searchRecords() {
