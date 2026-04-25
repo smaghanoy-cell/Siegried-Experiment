@@ -3,115 +3,400 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Online Database Infographic</title>
+  <title>Online Database & Infographic</title>
 
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: Georgia, "Times New Roman", serif;
     }
 
     body {
-      margin: 0;
-      background: #f4f7fb;
-      color: #222;
+      background: #ffffff;
+      color: #2f123f;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* HEADER */
     header {
-      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      width: 100%;
+      background: #fff;
+      padding: 25px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #df5b47 40%, #3c174d 40%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
-      padding: 35px 20px;
-      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
+    .logo-text small {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #333;
     }
 
-    header p {
-      margin-top: 10px;
-      font-size: 16px;
+    .logo-text strong {
+      font-size: 22px;
+      color: #333;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 25px;
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 35px;
     }
 
-    .cards {
+    nav a {
+      text-decoration: none;
+      color: #351243;
+      font-size: 17px;
+      font-family: Arial, sans-serif;
+    }
+
+    nav a:hover {
+      color: #df5b47;
+    }
+
+    .phone {
+      color: #351243;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 720px;
+      padding: 70px 7%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-bottom: 30px;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: #fff;
     }
 
-    .card {
-      background: white;
-      padding: 22px;
-      border-radius: 16px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      text-align: center;
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 120%;
+      height: 300px;
+      left: -10%;
+      bottom: 90px;
+      background: #f0eef8;
+      transform: rotate(-3deg);
+      z-index: 0;
+      border-radius: 50%;
     }
 
-    .card h2 {
-      margin: 0;
-      font-size: 34px;
-      color: #1d4ed8;
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 750px;
+      height: 280px;
+      right: -120px;
+      top: 250px;
+      background: transparent;
+      border-top: 3px solid rgba(60, 23, 77, 0.10);
+      border-bottom: 3px solid rgba(60, 23, 77, 0.10);
+      border-radius: 50%;
+      transform: rotate(12deg);
+      z-index: 0;
     }
 
-    .card p {
-      margin: 8px 0 0;
+    .hero-images {
+      position: relative;
+      height: 520px;
+      z-index: 2;
+    }
+
+    .circle-img {
+      position: absolute;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      border: 8px solid #fff;
+    }
+
+    .img-large {
+      width: 330px;
+      height: 330px;
+      left: 10px;
+      top: 60px;
+    }
+
+    .img-medium {
+      width: 230px;
+      height: 230px;
+      right: 40px;
+      top: 120px;
+    }
+
+    .img-small {
+      width: 260px;
+      height: 260px;
+      left: 230px;
+      bottom: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      text-align: right;
+    }
+
+    .hero-text h1 {
+      font-size: 78px;
+      line-height: 0.95;
+      color: #3c174d;
+      margin-bottom: 25px;
+    }
+
+    .hero-text h1 span {
+      color: #df5b47;
+    }
+
+    .hero-text p {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-left: auto;
       color: #555;
     }
 
-    .section-title {
-      margin-top: 35px;
-      margin-bottom: 15px;
-      font-size: 24px;
-      color: #1e3a8a;
+    .hero-buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #df5b47;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #3c174d;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    /* GENERAL SECTIONS */
+    section {
+      padding: 70px 7%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header small {
+      color: #df5b47;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .section-header h2 {
+      font-size: 42px;
+      color: #3c174d;
+      margin-top: 8px;
+    }
+
+    .section-header p {
+      font-family: Arial, sans-serif;
+      color: #666;
+      max-width: 650px;
+      margin: 12px auto 0;
+      line-height: 1.6;
+    }
+
+    /* INFOGRAPHIC CARDS */
+    .dashboard {
+      background: #f7f4fb;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      text-align: center;
+      border-top: 6px solid #df5b47;
+    }
+
+    .stat-card h3 {
+      font-size: 48px;
+      color: #3c174d;
+    }
+
+    .stat-card p {
+      font-family: Arial, sans-serif;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    /* BAR INFOGRAPHIC */
+    .bars {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 24px;
+    }
+
+    .bar-card {
+      background: white;
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .bar-card h4 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #3c174d;
+    }
+
+    .bar-card p {
+      font-family: Arial, sans-serif;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .bar-bg {
+      width: 100%;
+      height: 15px;
+      background: #e4deea;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #df5b47, #3c174d);
+      border-radius: 20px;
+      width: 0%;
+      transition: 0.6s ease;
+    }
+
+    /* DATABASE TABLE */
+    .database {
+      background: white;
     }
 
     .search-box {
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .search-box input {
       width: 100%;
-      padding: 14px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      margin-bottom: 18px;
+      padding: 16px 20px;
+      border-radius: 35px;
+      border: 2px solid #e4deea;
       font-size: 16px;
+      outline: none;
+      font-family: Arial, sans-serif;
+    }
+
+    .search-box input:focus {
+      border-color: #df5b47;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      background: white;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      min-width: 750px;
     }
 
     th {
-      background: #1d4ed8;
+      background: #3c174d;
       color: white;
-      padding: 14px;
+      padding: 18px;
       text-align: left;
+      font-family: Arial, sans-serif;
     }
 
     td {
-      padding: 13px;
+      padding: 17px 18px;
       border-bottom: 1px solid #eee;
+      font-family: Arial, sans-serif;
+      color: #444;
     }
 
     tr:hover {
-      background: #f1f5ff;
+      background: #f7f4fb;
     }
 
     .status {
-      padding: 6px 10px;
+      padding: 7px 13px;
       border-radius: 20px;
-      font-size: 13px;
       font-weight: bold;
+      font-size: 13px;
+      display: inline-block;
     }
 
     .approved {
@@ -124,55 +409,167 @@
       color: #854d0e;
     }
 
+    .review {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
     .rejected {
       background: #fee2e2;
       color: #991b1b;
     }
 
-    .infographic {
+    /* SERVICES */
+    .services {
+      background: #f7f4fb;
+    }
+
+    .service-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
     }
 
-    .info-box {
+    .service-card {
       background: white;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.07);
+      min-height: 180px;
     }
 
-    .bar {
-      height: 14px;
-      background: #ddd;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-top: 8px;
+    .service-card .icon {
+      font-size: 34px;
+      margin-bottom: 15px;
     }
 
-    .bar-fill {
-      height: 100%;
-      background: #2563eb;
+    .service-card h3 {
+      color: #3c174d;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-family: Arial, sans-serif;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: #3c174d;
+      color: white;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      font-family: Arial, sans-serif;
+      color: #eee;
+      max-width: 650px;
+      margin: auto;
+      line-height: 1.7;
     }
 
     footer {
+      background: #2b1038;
+      color: white;
       text-align: center;
-      padding: 20px;
-      color: #666;
-      font-size: 14px;
+      padding: 25px;
+      font-family: Arial, sans-serif;
     }
 
-    @media (max-width: 600px) {
-      table {
-        font-size: 13px;
+    footer p {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      header {
+        flex-wrap: wrap;
       }
 
-      th, td {
-        padding: 9px;
+      .menu-btn {
+        display: block;
       }
 
-      header h1 {
-        font-size: 25px;
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 20px;
+        gap: 18px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 40px;
+      }
+
+      .hero-images {
+        height: 420px;
+      }
+
+      .img-large {
+        width: 250px;
+        height: 250px;
+      }
+
+      .img-medium {
+        width: 180px;
+        height: 180px;
+        right: 10px;
+      }
+
+      .img-small {
+        width: 200px;
+        height: 200px;
+        left: 140px;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 52px;
+      }
+
+      .hero-text p {
+        margin: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .logo-text strong {
+        font-size: 16px;
+      }
+
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      .section-header h2 {
+        font-size: 32px;
+      }
+
+      section {
+        padding: 55px 5%;
       }
     }
   </style>
@@ -180,182 +577,322 @@
 
 <body>
 
+  <!-- HEADER -->
   <header>
-    <h1>Online Records Database</h1>
-    <p>Simple public database with infographic summary</p>
+    <div class="logo">
+      <div class="logo-icon">DB</div>
+      <div class="logo-text">
+        <small>ONLINE PUBLIC</small>
+        <strong>DATABASE INFOGRAPHIC</strong>
+      </div>
+    </div>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+    <nav id="navMenu">
+      <a href="#home">Home</a>
+      <a href="#dashboard">Infographic</a>
+      <a href="#database">Database</a>
+      <a href="#services">Features</a>
+      <a href="#contact">Contact</a>
+      <span class="phone">📞 (000) 000-0000</span>
+    </nav>
   </header>
 
-  <div class="container">
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-images">
+      <img class="circle-img img-large" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" alt="Team photo">
+      <img class="circle-img img-medium" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80" alt="Dashboard photo">
+      <img class="circle-img img-small" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80" alt="Data photo">
+    </div>
 
-    <div class="cards">
-      <div class="card">
-        <h2 id="totalRecords">0</h2>
+    <div class="hero-text">
+      <h1><span>Your</span><br>Public<br>Database</h1>
+      <p>
+        A simple online database and infographic dashboard that you can share with others.
+        View records, search data, and show beautiful summaries in one public website.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#dashboard" class="btn btn-primary">View Infographic</a>
+        <a href="#database" class="btn btn-secondary">Open Database</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOGRAPHIC DASHBOARD -->
+  <section class="dashboard" id="dashboard">
+    <div class="section-header">
+      <small>Infographic Summary</small>
+      <h2>Database Overview</h2>
+      <p>
+        This section automatically counts your records and shows the result as a simple infographic.
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3 id="totalRecords">0</h3>
         <p>Total Records</p>
       </div>
 
-      <div class="card">
-        <h2 id="approvedRecords">0</h2>
+      <div class="stat-card">
+        <h3 id="approvedRecords">0</h3>
         <p>Approved</p>
       </div>
 
-      <div class="card">
-        <h2 id="pendingRecords">0</h2>
+      <div class="stat-card">
+        <h3 id="pendingRecords">0</h3>
         <p>Pending</p>
       </div>
 
-      <div class="card">
-        <h2 id="rejectedRecords">0</h2>
-        <p>Rejected</p>
+      <div class="stat-card">
+        <h3 id="reviewRecords">0</h3>
+        <p>For Review</p>
       </div>
     </div>
 
-    <h2 class="section-title">Infographic Summary</h2>
-
-    <div class="infographic">
-      <div class="info-box">
-        <strong>Approved Percentage</strong>
-        <div class="bar">
+    <div class="bars">
+      <div class="bar-card">
+        <h4>Approved Records</h4>
+        <div class="bar-bg">
           <div class="bar-fill" id="approvedBar"></div>
         </div>
-        <p id="approvedPercent"></p>
+        <p id="approvedPercent">0%</p>
       </div>
 
-      <div class="info-box">
-        <strong>Pending Percentage</strong>
-        <div class="bar">
+      <div class="bar-card">
+        <h4>Pending Records</h4>
+        <div class="bar-bg">
           <div class="bar-fill" id="pendingBar"></div>
         </div>
-        <p id="pendingPercent"></p>
+        <p id="pendingPercent">0%</p>
       </div>
 
-      <div class="info-box">
-        <strong>Rejected Percentage</strong>
-        <div class="bar">
-          <div class="bar-fill" id="rejectedBar"></div>
+      <div class="bar-card">
+        <h4>For Review Records</h4>
+        <div class="bar-bg">
+          <div class="bar-fill" id="reviewBar"></div>
         </div>
-        <p id="rejectedPercent"></p>
+        <p id="reviewPercent">0%</p>
       </div>
     </div>
+  </section>
 
-    <h2 class="section-title">Database Table</h2>
+  <!-- DATABASE TABLE -->
+  <section class="database" id="database">
+    <div class="section-header">
+      <small>Searchable Records</small>
+      <h2>Public Database Table</h2>
+      <p>
+        Use the search box to find records by name, office, category, or status.
+      </p>
+    </div>
 
-    <input
-      type="text"
-      id="searchInput"
-      class="search-box"
-      placeholder="Search by name, school, program, or status..."
-      onkeyup="searchTable()"
-    />
+    <div class="search-box">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search records..."
+        onkeyup="searchRecords()"
+      />
+    </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>School</th>
-          <th>Program</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody id="recordTable"></tbody>
-    </table>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Office / School</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody id="recordTable"></tbody>
+      </table>
+    </div>
+  </section>
 
-  </div>
+  <!-- FEATURES -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <small>Website Features</small>
+      <h2>What This Website Can Show</h2>
+      <p>
+        You can customize this website for public data, school records, office tracking, project lists, or reports.
+      </p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="icon">📊</div>
+        <h3>Infographic Cards</h3>
+        <p>Automatically shows total records and status count.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="icon">🔍</div>
+        <h3>Search Function</h3>
+        <p>Visitors can search the database instantly.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="icon">📁</div>
+        <h3>Public Records</h3>
+        <p>Good for public and non-confidential information.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="icon">🌐</div>
+        <h3>Online Link</h3>
+        <p>Upload to GitHub Pages and share the website link.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2>Ready to Share Your Database?</h2>
+    <p>
+      Edit the records inside the code, upload it to GitHub Pages, and share your public database link with others.
+    </p>
+  </section>
 
   <footer>
-    Created using HTML, CSS, JavaScript, and GitHub Pages
+    <p>© 2026 Online Database Infographic. Created with HTML, CSS, JavaScript, and GitHub Pages.</p>
   </footer>
 
   <script>
     const records = [
       {
         name: "Juan Dela Cruz",
-        school: "ABC College",
-        program: "BSIT",
-        status: "Approved"
+        office: "ABC College",
+        category: "Application",
+        status: "Approved",
+        remarks: "Completed requirements"
       },
       {
         name: "Maria Santos",
-        school: "XYZ University",
-        program: "BSED",
-        status: "Pending"
+        office: "XYZ University",
+        category: "Evaluation",
+        status: "Pending",
+        remarks: "Waiting for review"
       },
       {
         name: "Carlo Reyes",
-        school: "Sample State University",
-        program: "BSBA",
-        status: "Approved"
+        office: "Metro Institute",
+        category: "Report",
+        status: "For Review",
+        remarks: "Submitted for checking"
       },
       {
         name: "Ana Lopez",
-        school: "Metro College",
-        program: "BEED",
-        status: "Rejected"
+        office: "North State College",
+        category: "Application",
+        status: "Approved",
+        remarks: "Verified and approved"
       },
       {
         name: "Mark Garcia",
-        school: "North University",
-        program: "BSCS",
-        status: "Pending"
+        office: "South University",
+        category: "Request",
+        status: "Pending",
+        remarks: "Needs additional document"
+      },
+      {
+        name: "Grace Villanueva",
+        office: "City Technical College",
+        category: "Monitoring",
+        status: "For Review",
+        remarks: "Under validation"
+      },
+      {
+        name: "Paolo Mendoza",
+        office: "Eastern College",
+        category: "Application",
+        status: "Rejected",
+        remarks: "Incomplete details"
+      },
+      {
+        name: "Liza Fernandez",
+        office: "Western University",
+        category: "Evaluation",
+        status: "Approved",
+        remarks: "Finalized"
       }
     ];
+
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("active");
+    }
+
+    function statusClass(status) {
+      if (status === "Approved") return "approved";
+      if (status === "Pending") return "pending";
+      if (status === "For Review") return "review";
+      if (status === "Rejected") return "rejected";
+      return "";
+    }
 
     function displayRecords(data) {
       const table = document.getElementById("recordTable");
       table.innerHTML = "";
 
       data.forEach(record => {
-        const statusClass = record.status.toLowerCase();
-
         table.innerHTML += `
           <tr>
             <td>${record.name}</td>
-            <td>${record.school}</td>
-            <td>${record.program}</td>
-            <td><span class="status ${statusClass}">${record.status}</span></td>
+            <td>${record.office}</td>
+            <td>${record.category}</td>
+            <td><span class="status ${statusClass(record.status)}">${record.status}</span></td>
+            <td>${record.remarks}</td>
           </tr>
         `;
       });
     }
 
-    function updateInfographic() {
+    function updateDashboard() {
       const total = records.length;
-      const approved = records.filter(r => r.status === "Approved").length;
-      const pending = records.filter(r => r.status === "Pending").length;
-      const rejected = records.filter(r => r.status === "Rejected").length;
+      const approved = records.filter(record => record.status === "Approved").length;
+      const pending = records.filter(record => record.status === "Pending").length;
+      const review = records.filter(record => record.status === "For Review").length;
 
       document.getElementById("totalRecords").innerText = total;
       document.getElementById("approvedRecords").innerText = approved;
       document.getElementById("pendingRecords").innerText = pending;
-      document.getElementById("rejectedRecords").innerText = rejected;
+      document.getElementById("reviewRecords").innerText = review;
 
       const approvedPercent = Math.round((approved / total) * 100);
       const pendingPercent = Math.round((pending / total) * 100);
-      const rejectedPercent = Math.round((rejected / total) * 100);
+      const reviewPercent = Math.round((review / total) * 100);
 
       document.getElementById("approvedBar").style.width = approvedPercent + "%";
       document.getElementById("pendingBar").style.width = pendingPercent + "%";
-      document.getElementById("rejectedBar").style.width = rejectedPercent + "%";
+      document.getElementById("reviewBar").style.width = reviewPercent + "%";
 
-      document.getElementById("approvedPercent").innerText = approvedPercent + "% Approved";
-      document.getElementById("pendingPercent").innerText = pendingPercent + "% Pending";
-      document.getElementById("rejectedPercent").innerText = rejectedPercent + "% Rejected";
+      document.getElementById("approvedPercent").innerText = approvedPercent + "% of total records";
+      document.getElementById("pendingPercent").innerText = pendingPercent + "% of total records";
+      document.getElementById("reviewPercent").innerText = reviewPercent + "% of total records";
     }
 
-    function searchTable() {
-      const searchValue = document.getElementById("searchInput").value.toLowerCase();
+    function searchRecords() {
+      const searchText = document.getElementById("searchInput").value.toLowerCase();
 
-      const filteredRecords = records.filter(record =>
-        record.name.toLowerCase().includes(searchValue) ||
-        record.school.toLowerCase().includes(searchValue) ||
-        record.program.toLowerCase().includes(searchValue) ||
-        record.status.toLowerCase().includes(searchValue)
+      const filtered = records.filter(record =>
+        record.name.toLowerCase().includes(searchText) ||
+        record.office.toLowerCase().includes(searchText) ||
+        record.category.toLowerCase().includes(searchText) ||
+        record.status.toLowerCase().includes(searchText) ||
+        record.remarks.toLowerCase().includes(searchText)
       );
 
-      displayRecords(filteredRecords);
+      displayRecords(filtered);
     }
 
     displayRecords(records);
-    updateInfographic();
+    updateDashboard();
   </script>
 
 </body>
