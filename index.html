@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Database Infographic</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 34px;
+      color: #1d4ed8;
+    }
+
+    .card p {
+      margin: 8px 0 0;
+      color: #555;
+    }
+
+    .section-title {
+      margin-top: 35px;
+      margin-bottom: 15px;
+      font-size: 24px;
+      color: #1e3a8a;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    th {
+      background: #1d4ed8;
+      color: white;
+      padding: 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 13px;
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:hover {
+      background: #f1f5ff;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .approved {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .pending {
+      background: #fef9c3;
+      color: #854d0e;
+    }
+
+    .rejected {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .infographic {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .info-box {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .bar {
+      height: 14px;
+      background: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: #2563eb;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      table {
+        font-size: 13px;
+      }
+
+      th, td {
+        padding: 9px;
+      }
+
+      header h1 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Online Records Database</h1>
+    <p>Simple public database with infographic summary</p>
+  </header>
+
+  <div class="container">
+
+    <div class="cards">
+      <div class="card">
+        <h2 id="totalRecords">0</h2>
+        <p>Total Records</p>
+      </div>
+
+      <div class="card">
+        <h2 id="approvedRecords">0</h2>
+        <p>Approved</p>
+      </div>
+
+      <div class="card">
+        <h2 id="pendingRecords">0</h2>
+        <p>Pending</p>
+      </div>
+
+      <div class="card">
+        <h2 id="rejectedRecords">0</h2>
+        <p>Rejected</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Infographic Summary</h2>
+
+    <div class="infographic">
+      <div class="info-box">
+        <strong>Approved Percentage</strong>
+        <div class="bar">
+          <div class="bar-fill" id="approvedBar"></div>
+        </div>
+        <p id="approvedPercent"></p>
+      </div>
+
+      <div class="info-box">
+        <strong>Pending Percentage</strong>
+        <div class="bar">
+          <div class="bar-fill" id="pendingBar"></div>
+        </div>
+        <p id="pendingPercent"></p>
+      </div>
+
+      <div class="info-box">
+        <strong>Rejected Percentage</strong>
+        <div class="bar">
+          <div class="bar-fill" id="rejectedBar"></div>
+        </div>
+        <p id="rejectedPercent"></p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Database Table</h2>
+
+    <input
+      type="text"
+      id="searchInput"
+      class="search-box"
+      placeholder="Search by name, school, program, or status..."
+      onkeyup="searchTable()"
+    />
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>School</th>
+          <th>Program</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="recordTable"></tbody>
+    </table>
+
+  </div>
+
+  <footer>
+    Created using HTML, CSS, JavaScript, and GitHub Pages
+  </footer>
+
+  <script>
+    const records = [
+      {
+        name: "Juan Dela Cruz",
+        school: "ABC College",
+        program: "BSIT",
+        status: "Approved"
+      },
+      {
+        name: "Maria Santos",
+        school: "XYZ University",
+        program: "BSED",
+        status: "Pending"
+      },
+      {
+        name: "Carlo Reyes",
+        school: "Sample State University",
+        program: "BSBA",
+        status: "Approved"
+      },
+      {
+        name: "Ana Lopez",
+        school: "Metro College",
+        program: "BEED",
+        status: "Rejected"
+      },
+      {
+        name: "Mark Garcia",
+        school: "North University",
+        program: "BSCS",
+        status: "Pending"
+      }
+    ];
+
+    function displayRecords(data) {
+      const table = document.getElementById("recordTable");
+      table.innerHTML = "";
+
+      data.forEach(record => {
+        const statusClass = record.status.toLowerCase();
+
+        table.innerHTML += `
+          <tr>
+            <td>${record.name}</td>
+            <td>${record.school}</td>
+            <td>${record.program}</td>
+            <td><span class="status ${statusClass}">${record.status}</span></td>
+          </tr>
+        `;
+      });
+    }
+
+    function updateInfographic() {
+      const total = records.length;
+      const approved = records.filter(r => r.status === "Approved").length;
+      const pending = records.filter(r => r.status === "Pending").length;
+      const rejected = records.filter(r => r.status === "Rejected").length;
+
+      document.getElementById("totalRecords").innerText = total;
+      document.getElementById("approvedRecords").innerText = approved;
+      document.getElementById("pendingRecords").innerText = pending;
+      document.getElementById("rejectedRecords").innerText = rejected;
+
+      const approvedPercent = Math.round((approved / total) * 100);
+      const pendingPercent = Math.round((pending / total) * 100);
+      const rejectedPercent = Math.round((rejected / total) * 100);
+
+      document.getElementById("approvedBar").style.width = approvedPercent + "%";
+      document.getElementById("pendingBar").style.width = pendingPercent + "%";
+      document.getElementById("rejectedBar").style.width = rejectedPercent + "%";
+
+      document.getElementById("approvedPercent").innerText = approvedPercent + "% Approved";
+      document.getElementById("pendingPercent").innerText = pendingPercent + "% Pending";
+      document.getElementById("rejectedPercent").innerText = rejectedPercent + "% Rejected";
+    }
+
+    function searchTable() {
+      const searchValue = document.getElementById("searchInput").value.toLowerCase();
+
+      const filteredRecords = records.filter(record =>
+        record.name.toLowerCase().includes(searchValue) ||
+        record.school.toLowerCase().includes(searchValue) ||
+        record.program.toLowerCase().includes(searchValue) ||
+        record.status.toLowerCase().includes(searchValue)
+      );
+
+      displayRecords(filteredRecords);
+    }
+
+    displayRecords(records);
+    updateInfographic();
+  </script>
+
+</body>
+</html>
